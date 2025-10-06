@@ -14,6 +14,7 @@ class ProductView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Products"),
+        backgroundColor: Colors.blueAccent,
         actions: [
           Column(
             children: [
@@ -103,7 +104,9 @@ class ProductView extends StatelessWidget {
                                 product.description,
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(color: Color.fromARGB(255, 7, 5, 5)),
+                                style: const TextStyle(
+                                  color: Color.fromARGB(255, 7, 5, 5),
+                                ),
                               ),
                               const SizedBox(height: 5),
                               Text(
