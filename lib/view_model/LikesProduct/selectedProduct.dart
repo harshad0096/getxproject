@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getxproject/Controllers/ProductApi.dart';
-import 'package:getxproject/view_model/ProductInfo.dart';
+import 'package:getxproject/view_model/products/ProductInfo.dart';
 
 class FavoriteProductsPage extends StatelessWidget {
   FavoriteProductsPage({super.key});
@@ -13,7 +13,7 @@ class FavoriteProductsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Favorite Products"),
-        backgroundColor: const Color.fromARGB(255, 97, 114, 223),
+        backgroundColor: const Color.fromARGB(255, 165, 232, 126),
       ),
       body: Obx(() {
         final favorites = controller.selectedFavorites;
@@ -46,7 +46,6 @@ class FavoriteProductsPage extends StatelessWidget {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // 🖼 Product Image
                       ClipRRect(
                         borderRadius: BorderRadius.circular(8),
                         child: Image.network(
@@ -57,18 +56,22 @@ class FavoriteProductsPage extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 10),
-
-                      // 🧾 Product Info
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              product.title,
-                              style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
+                            Row(
+                              children: [
+                                Flexible(
+                                  child: Text(
+                                    product.title,
+                                    style: const TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                             const SizedBox(height: 5),
                             Text(
@@ -78,13 +81,33 @@ class FavoriteProductsPage extends StatelessWidget {
                               style: const TextStyle(color: Colors.grey),
                             ),
                             const SizedBox(height: 10),
-                            Text(
-                              "₹${product.price}",
-                              style: const TextStyle(
-                                color: Colors.green,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
+                            Row(
+                              children: [
+                                Text(
+                                  "₹${product.price}",
+                                  style: const TextStyle(
+                                    color: Colors.green,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                Spacer(),
+                                Flexible(
+                                  child: InkWell(
+                                    onTap: () =>
+                                        controller.removeProduct(index),
+                                    child: Column(
+                                      children: [
+                                        const Icon(
+                                          Icons.delete,
+                                          color: Colors.red,
+                                        ),
+                                        // Text("Delete"),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),

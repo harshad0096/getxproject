@@ -42,6 +42,11 @@ class ProductController extends GetxController {
     favoriteProduct[index] = !favoriteProduct[index];
     favoriteProduct.refresh();
   }
+  void removeProduct(int index) {
+  productList.removeAt(index);
+  favoriteProduct.removeAt(index);
+}
+
 
   // Get list of selected (favorite) products
   List<Product> get selectedFavorites {

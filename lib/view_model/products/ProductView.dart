@@ -1,34 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getxproject/Controllers/ProductApi.dart';
-import 'package:getxproject/view_model/ProductInfo.dart';
-import 'package:getxproject/view_model/selectedProduct.dart';
+import 'package:getxproject/Controllers/card_controller.dart';
+import 'package:getxproject/model/product';
+import 'package:getxproject/view_model/products/ProductInfo.dart';
+import 'package:getxproject/view_model/cardproduct/cardpage.dart';
+import 'package:getxproject/view_model/LikesProduct/selectedProduct.dart';
 
 class ProductView extends StatelessWidget {
   ProductView({super.key});
 
   final ProductController controller = Get.put(ProductController());
+  final CartController cartController = Get.put(CartController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Products"),
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: const Color.fromARGB(255, 165, 232, 126),
         actions: [
-          Column(
+          Row(
             children: [
               IconButton(
                 icon: const Icon(
-                  Icons.favorite,
-                  color: Color.fromARGB(255, 208, 55, 58),
+                  Icons.favorite_border_sharp,
+                  color: Color.fromARGB(255, 10, 9, 9),
                 ),
 
                 onPressed: () {
                   Get.to(() => FavoriteProductsPage());
                 },
               ),
-              Flexible(child: Text("Like")),
+              InkWell(
+                onTap: () => Get.to(CartPage()),
+                child: Icon(Icons.shopping_cart),
+              ),
             ],
           ),
         ],
@@ -91,10 +98,44 @@ class ProductView extends StatelessWidget {
                                       isFav
                                           ? Icons.favorite
                                           : Icons.favorite_border,
-                                      color: isFav ? Colors.red : Colors.grey,
+                                      color: isFav
+                                          ? const Color.fromARGB(
+                                              255,
+                                              231,
+                                              122,
+                                              114,
+                                            )
+                                          : Colors.grey,
                                     ),
                                     onPressed: () {
                                       controller.selectProduct(index);
+                                      if (isFav == false) {
+                                        Get.snackbar(
+                                          "product ",
+                                          "Add to like",
+                                          snackPosition: SnackPosition.BOTTOM,
+                                          backgroundColor: const Color.fromARGB(
+                                            153,
+                                            139,
+                                            230,
+                                            96,
+                                          ),
+                                          duration: Duration(seconds: 1),
+                                        );
+                                      } else {
+                                        Get.snackbar(
+                                          "product ",
+                                          "Remove in like",
+                                          snackPosition: SnackPosition.BOTTOM,
+                                          backgroundColor: const Color.fromARGB(
+                                            153,
+                                            183,
+                                            10,
+                                            10,
+                                          ),
+                                          duration: Duration(seconds: 1),
+                                        );
+                                      }
                                     },
                                   ),
                                 ],
@@ -118,7 +159,15 @@ class ProductView extends StatelessWidget {
                               ),
                               const SizedBox(height: 8),
                               ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  cartController.addToCart(product);
+                                  Get.snackbar(
+                                    "Added to Cart",
+                                    "${product.title} has been added!",
+                                    snackPosition: SnackPosition.BOTTOM,
+                                    backgroundColor: Colors.green.shade100,
+                                  );
+                                },
                                 child: const Text("Add to Cart"),
                               ),
                             ],

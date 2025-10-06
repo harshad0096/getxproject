@@ -8,14 +8,14 @@ class Fistpagecontroller extends GetxController {
   @override
   void onInit() {
     super.onInit();
-
     likedItems.assignAll(List.generate(like.length, (index) => false));
   }
 
   void toggleLike(int index) {
     likedItems[index] = !likedItems[index];
-    likedItems.refresh(); // refresh the UI
+    likedItems.refresh(); 
   }
+  
 
   List<String> get selectLike {
     List<String> selected = [];

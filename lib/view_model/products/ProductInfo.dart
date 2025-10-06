@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getxproject/Controllers/card_controller.dart';
 import 'package:getxproject/model/product';
 
 class Productinfo extends StatelessWidget {
   final Product product;
 
-  const Productinfo({super.key, required this.product});
+  Productinfo({super.key, required this.product});
+
+  final CartController cartController = Get.put(CartController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(product.title ?? "Product Details"),
-        backgroundColor: Colors.blue,
+        backgroundColor: const Color.fromARGB(255, 165, 232, 126),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -20,7 +23,6 @@ class Productinfo extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-             
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Image.network(
@@ -62,8 +64,16 @@ class Productinfo extends StatelessWidget {
         ),
       ),
       floatingActionButton: ElevatedButton(
-        onPressed: () {},
-        child: Text("Add to Card"),
+        onPressed: () {
+          cartController.addToCart(product);
+          Get.snackbar(
+            "Added to Cart",
+            "${product.title} has been added!",
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.green.shade100,
+          );
+        },
+        child: const Text("Add to Cart"),
       ),
     );
   }

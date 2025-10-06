@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:getxproject/view_model/ProductView.dart';
+import 'package:getxproject/view_model/products/ProductView.dart';
 
 void main() {
   runApp(const MyApp());
