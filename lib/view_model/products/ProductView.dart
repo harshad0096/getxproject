@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getxproject/Controllers/ProductApi.dart';
 import 'package:getxproject/Controllers/card_controller.dart';
-import 'package:getxproject/model/product';
 import 'package:getxproject/view_model/products/ProductInfo.dart';
 import 'package:getxproject/view_model/cardproduct/cardpage.dart';
 import 'package:getxproject/view_model/LikesProduct/selectedProduct.dart';
