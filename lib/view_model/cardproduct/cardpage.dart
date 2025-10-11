@@ -38,15 +38,15 @@ class CartPage extends StatelessWidget {
               ),
               child: ListTile(
                 leading: Image.network(
-                  product.thumbnail ?? "",
+                  product.thumbnail,
                   width: 60,
                   height: 60,
                   fit: BoxFit.cover,
                   errorBuilder: (context, error, stackTrace) =>
                       const Icon(Icons.image_not_supported),
                 ),
-                title: Text(product.title ?? "Product"),
-                subtitle: Text("₹${product.price ?? 0}"),
+                title: Text(product.title),
+                subtitle: Text("₹${product.price}"),
                 trailing: IconButton(
                   icon: const Icon(Icons.delete, color: Colors.red),
                   onPressed: () => cart.removeFromCart(product),
