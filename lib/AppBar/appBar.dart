@@ -1,33 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:getxproject/view_model/LikesProduct/selectedProduct.dart';
-
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final List<Widget>? actions;
 
-  const CustomAppBar({
-    Key? key,
-    required this.title,
-    this.actions,
-  }) : super(key: key);
+  const CustomAppBar({super.key, required this.title, this.actions});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(title),
-      backgroundColor: const Color.fromARGB(255, 165, 232, 126),
+      title: Text(title, style: TextStyle(color: Colors.white)),
+      backgroundColor: const Color.fromARGB(221, 53, 50, 50),
       actions: [
         IconButton(
-            icon: const Icon(Icons.favorite_border_sharp),
-            onPressed: () {
-              Get.to(() => FavoriteProductsPage());
-            },
-          ),
-         
-      ]
+          icon: Icon(Icons.favorite_border_sharp, color: Colors.white),
+          onPressed: () {
+            Get.to(() => FavoriteProductsPage());
+          },
+        ),
+      ],
     );
   }
 
