@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'package:getxproject/view_model/products/ProductView.dart';
+import 'package:getxproject/view_model/Buttom_navbar/navBar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: ProductView(),
+      home: Navbar(),
       debugShowCheckedModeBanner: false,
     );
   }

@@ -1,44 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getxproject/AppBar/appBar.dart';
 import 'package:getxproject/Controllers/ProductApi.dart';
 import 'package:getxproject/Controllers/card_controller.dart';
 import 'package:getxproject/view_model/products/ProductInfo.dart';
-import 'package:getxproject/view_model/cardproduct/cardpage.dart';
-import 'package:getxproject/view_model/LikesProduct/selectedProduct.dart';
 
 class ProductView extends StatelessWidget {
   ProductView({super.key});
 
   final ProductController controller = Get.put(ProductController());
   final CartController cartController = Get.put(CartController());
+  //Producrt display widget
+  productDiplay() {}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Products"),
-        backgroundColor: const Color.fromARGB(255, 165, 232, 126),
-        actions: [
-          Row(
-            children: [
-              IconButton(
-                icon: const Icon(
-                  Icons.favorite_border_sharp,
-                  color: Color.fromARGB(255, 10, 9, 9),
-                ),
+      appBar: CustomAppBar(title: "Productd"),
 
-                onPressed: () {
-                  Get.to(() => FavoriteProductsPage());
-                },
-              ),
-              InkWell(
-                onTap: () => Get.to(CartPage()),
-                child: Icon(Icons.shopping_cart),
-              ),
-            ],
-          ),
-        ],
-      ),
       body: Obx(() {
         if (controller.isLoading.value) {
           return const Center(child: CircularProgressIndicator());

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getxproject/AppBar/appBar.dart';
 import 'package:getxproject/Controllers/ProductApi.dart';
 import 'package:getxproject/view_model/products/ProductInfo.dart';
 
@@ -11,10 +12,7 @@ class FavoriteProductsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Favorite Products"),
-        backgroundColor: const Color.fromARGB(255, 165, 232, 126),
-      ),
+      appBar: CustomAppBar(title: "Favorite Products"),
       body: Obx(() {
         final favorites = controller.selectedFavorites;
 

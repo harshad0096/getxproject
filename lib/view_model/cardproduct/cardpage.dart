@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getxproject/AppBar/appBar.dart';
 import 'package:getxproject/Controllers/card_controller.dart';
 import 'package:getxproject/model/product';
 
@@ -11,10 +12,7 @@ class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("My Cart"),
-        backgroundColor: const Color.fromARGB(255, 165, 232, 126),
-      ),
+      appBar: CustomAppBar(title: "My Cart"),
 
       body: Obx(() {
         if (cart.cartProducts.isEmpty) {
@@ -38,15 +36,15 @@ class CartPage extends StatelessWidget {
               ),
               child: ListTile(
                 leading: Image.network(
-                  product.thumbnail ?? "",
+                  product.thumbnail,
                   width: 60,
                   height: 60,
                   fit: BoxFit.cover,
                   errorBuilder: (context, error, stackTrace) =>
                       const Icon(Icons.image_not_supported),
                 ),
-                title: Text(product.title ?? "Product"),
-                subtitle: Text("₹${product.price ?? 0}"),
+                title: Text(product.title),
+                subtitle: Text("₹${product.price}"),
                 trailing: IconButton(
                   icon: const Icon(Icons.delete, color: Colors.red),
                   onPressed: () => cart.removeFromCart(product),
